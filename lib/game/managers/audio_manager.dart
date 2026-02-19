@@ -30,7 +30,7 @@ class AudioManager {
   void playBackgroundMusic() {
     if (_isMusicEnabled) {
       try {
-        FlameAudio.bgm.play('music/background_music.mp3', volume: _musicVolume);
+        FlameAudio.bgm.play('music/maksym_dudchyk-symphony-of-the-streets-hip-hop-background-music-for-video-50-second-476676.mp3', volume: _musicVolume);
       } catch (e) {
         print('Error playing background music: $e');
       }

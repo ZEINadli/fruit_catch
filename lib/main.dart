@@ -1,8 +1,11 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:fruit_catch/game/fruit_catcher_game.dart';
+import 'package:fruit_catch/game/managers/audio_manager.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AudioManager().initialize();
   runApp(MyApp());
 }
 
@@ -36,55 +39,62 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   @override
+  void dispose() {
+    game.onRemove();
+    super.dispose();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          Stack(
-            children: [
-              GameWidget(game: game),
-              Positioned(
-                top: 50,
-                left: 20,
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.black54,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-          
-                  child: ValueListenableBuilder(
-                    valueListenable: game.scoreNotifier,
-                    builder: (context, score, child) {
-                      return Text(
-                        'Score: $score',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      );
-                    },
-                  ),
-                ),
+          GameWidget(game: game),
+          Positioned(
+            top: 50,
+            left: 20,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.black54,
+                borderRadius: BorderRadius.circular(10),
               ),
-              Positioned(
-                top: 50,
-                right: 20,
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.music_note, color: Colors.black),
-                      onPressed: () {},
+      
+              child: ValueListenableBuilder(
+                valueListenable: game.scoreNotifier,
+                builder: (context, score, child) {
+                  return Text(
+                    'Score: $score',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
-                    IconButton(
-                      icon: Icon(Icons.volume_up, color: Colors.black),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
-            ],
+            ),
+          ),
+          Positioned(
+            top: 50,
+            right: 20,
+            child: Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.music_note, color: Colors.black),
+                  onPressed: () {
+                    AudioManager().toggleMusic();
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.volume_up, color: Colors.black),
+                  onPressed: () {
+                    AudioManager().toggleSfx();
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),
