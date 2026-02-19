@@ -1,16 +1,7 @@
-# fruit_catch
+# download
+[nih](https://github.com/ZEINadli/fruit_catch/releases/download/v1/app-release.apk)
 
-A new Flutter project.
+# video demo
 
-## Getting Started
+https://github.com/user-attachments/assets/d6f48c0d-b0fe-4e5d-aa32-2bc215ff66a3
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
