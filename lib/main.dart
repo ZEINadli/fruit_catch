@@ -57,7 +57,7 @@ class _GameScreenState extends State<GameScreen> {
             child: Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.black54,
+                color: Colors.red[400],
                 borderRadius: BorderRadius.circular(10),
               ),
       
@@ -82,13 +82,13 @@ class _GameScreenState extends State<GameScreen> {
             child: Row(
               children: [
                 IconButton(
-                  icon: Icon(Icons.music_note, color: Colors.black),
+                  icon: Icon(Icons.music_note, color: Colors.red),
                   onPressed: () {
                     AudioManager().toggleMusic();
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.volume_up, color: Colors.black),
+                  icon: Icon(Icons.volume_up, color: Colors.red),
                   onPressed: () {
                     AudioManager().toggleSfx();
                   },
