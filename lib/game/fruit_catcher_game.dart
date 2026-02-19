@@ -1,16 +1,39 @@
+import 'dart:math';
+import 'package:flame/camera.dart';
+import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
-import 'package:flutter/widgets.dart';
-import 'package:fruit_catch/game/managers/audio_manager.dart';
+import 'package:flutter/material.dart';
+import 'components/basket.dart';
+import 'components/fruit.dart';
+import 'managers/audio_manager.dart';
 
-class FruitCatcherGame extends FlameGame {
+class FruitCatcherGame extends FlameGame
+    with PanDetector, HasCollisionDetection {
+  late Basket basket;
+  late TextComponent scoreText;
+  final Random random = Random();
+  double fruitSpawnTimer = 0;
+  final double fruitSpawnInterval = 1.5;
+
+  final ValueNotifier<int> scoreNotifier = ValueNotifier<int>(0);
+  int _score = 0;
+  int get score => _score;
+  set score(int value) {
+    _score = value;
+    scoreNotifier.value = value;
+  }
+
   @override
   Color backgroundColor() => const Color(0xFF87CEEB);
 
-  final ValueNotifier<int> scoreNotifier = ValueNotifier<int>(0);
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+
+    camera.viewport = FixedResolutionViewport(resolution: Vector2(400, 800));
+
     AudioManager().playBackgroundMusic();
   }
 }
