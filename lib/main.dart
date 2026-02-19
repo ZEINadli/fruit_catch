@@ -39,13 +39,13 @@ class _GameScreenState extends State<GameScreen> {
             top: 50,
             left: 20,
             child: Container(
-              padding: const EdgeInsets.all(10),
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.black54,
                 borderRadius: BorderRadius.circular(10),
               ),
 
-              child: const Text(
+              child: Text(
                 'Score: 1',
                 style: TextStyle(
                   color: Colors.white,
@@ -53,6 +53,22 @@ class _GameScreenState extends State<GameScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+            ),
+          ),
+          Positioned(
+            top: 50,
+            right: 20,
+            child: Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.music_note, color: Colors.black),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(Icons.volume_up, color: Colors.black),
+                  onPressed: () {},
+                ),
+              ],
             ),
           ),
         ],
